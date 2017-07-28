@@ -1,0 +1,50 @@
+{
+  "name": "rtext-writer",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es5/index.js",
+  "es2016": "dist/es6/index.js",
+  "typings": "dist/typings/index.d.ts",
+  "version": "0.1.0",
+  "description": "Rich Text library",
+  "license": "MIT",
+  "author": {
+    "name": "Boris Kaul",
+    "email": "localvoid@gmail.com",
+    "url": "https://github.com/localvoid"
+  },
+  "keywords": [
+    "rich",
+    "text"
+  ],
+  "homepage": "https://github.com/localvoid/rtext",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localvoid/rtext"
+  },
+  "bugs": {
+    "url": "https://github.com/localvoid/rtext/issues"
+  },
+  "github": "https://github.com/localvoid/rtext",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepublish": "npm run clean && npm run dist",
+    "clean": "../../node_modules/.bin/rimraf ./dist",
+    "dist": "npm run dist:es6 && npm run dist:es5 && npm run dist:cjs",
+    "dist:es6": "../../node_modules/.bin/tsc --project ./tsconfig.build.es6.json",
+    "dist:es5": "../../node_modules/.bin/tsc --project ./tsconfig.build.es5.json",
+    "dist:cjs": "../../node_modules/.bin/tsc --project ./tsconfig.build.cjs.json",
+    "lint": "../../node_modules/.bin/tslint --project ./tsconfig.json",
+    "test": "../../node_modules/.bin/mocha --inline-diffs -r ../../node_modules/ts-node/register __tests__/index.ts",
+    "test:coverage": "../../node_modules/.bin/nyc ../../node_modules/.bin/mocha __tests__/index.ts"
+  },
+  "peerDependencies": {
+    "rtext": "^0.1.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

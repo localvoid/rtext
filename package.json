@@ -1,0 +1,43 @@
+{
+  "name": "rtext",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Rich Text library.",
+  "license": "MIT",
+  "author": {
+    "name": "Boris Kaul",
+    "email": "localvoid@gmail.com",
+    "url": "https://github.com/localvoid"
+  },
+  "keywords": [
+    "rich",
+    "text"
+  ],
+  "homepage": "https://github.com/localvoid/rtext",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localvoid/rtext"
+  },
+  "bugs": {
+    "url": "https://github.com/localvoid/rtext/issues"
+  },
+  "github": "https://github.com/localvoid/rtext",
+  "files": [],
+  "scripts": {},
+  "devDependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.16",
+    "chalk": "^2.0.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.1.0",
+    "rimraf": "^2.6.1",
+    "ts-node": "^3.3.0",
+    "tslib": "^1.7.1",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
