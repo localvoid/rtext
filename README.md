@@ -48,13 +48,13 @@ be easy to convert rich texts into any format you like, for example, colored out
 ```ts
 class RichTextWriter {
   constructor();
-  write(...ws: Array<string | RichText | ((w: RichTextWriter) => void)>): RichTextWriter;
-  begin(type: string, data?: any): RichTextWriter;
-  beginKey(key: string, type: string, data?: any): RichTextWriter;
-  end(type: string): RichTextWriter;
-  endKey(key: string, type: string): RichTextWriter;
-  continue(type: string, data?: any): RichTextWriter;
-  continueKey(key: string, type: string, data?: any): RichTextWriter;
+  write(...ws: Array<string | RichText | ((w: RichTextWriter) => void)>): this;
+  begin(type: string, data?: any): this;
+  beginKey(key: string, type: string, data?: any): this;
+  end(type: string): this;
+  endKey(key: string, type: string): this;
+  continue(type: string, data?: any): this;
+  continueKey(key: string, type: string, data?: any): this;
   compose(): RichText;
 }
 
