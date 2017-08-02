@@ -1,4 +1,4 @@
-import { expect } from "iko"
+import { expect } from "iko";
 import { richText } from "../src/index";
 
 describe("empty", () => {
@@ -9,7 +9,7 @@ describe("empty", () => {
   });
 
   it("should have null annotations", () => {
-    expect(empty.annotations).toBe(null);
+    expect(empty.annotations).toBe(undefined);
   });
 });
 
@@ -23,7 +23,7 @@ describe("basic text block", () => {
   });
 
   it("should have null annotations", () => {
-    expect(empty.annotations).toBe(null);
+    expect(empty.annotations).toBe(undefined);
   });
 });
 
@@ -38,7 +38,7 @@ describe("two consecutive text blocks", () => {
   });
 
   it("should have null annotations", () => {
-    expect(empty.annotations).toBe(null);
+    expect(empty.annotations).toBe(undefined);
   });
 });
 
@@ -54,7 +54,7 @@ describe("annotated text block", () => {
   });
 
   it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(1);
   });
 
@@ -80,7 +80,7 @@ describe("two consecutive annotated text blocks", () => {
   });
 
   it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(1);
   });
 
@@ -106,7 +106,7 @@ describe("one annotated text blocks with one prepending basic text block", () =>
   });
 
   it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(1);
   });
 
@@ -132,7 +132,7 @@ describe("one annotated text blocks with one appending basic text block", () => 
   });
 
   it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(1);
   });
 
@@ -159,7 +159,7 @@ describe("one annotated text blocks with one appending and one prepending basic 
   });
 
   it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(1);
   });
 
@@ -186,7 +186,7 @@ describe("two different annotations: [a][b][/b][/a]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -221,7 +221,7 @@ describe("two different annotations: [b][a][/b][/a]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -256,7 +256,7 @@ describe("two different annotations: [a][b][/a][/b]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -291,7 +291,7 @@ describe("two different annotations: [b][a][/a][/b]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -327,7 +327,7 @@ describe("overlapping annotations: [a][b]12[/b]3[/a]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -364,7 +364,7 @@ describe("overlapping annotations: [a]1[b]2[/b]3[/a]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -401,7 +401,7 @@ describe("overlapping annotations: [a]1[b]2[/a]3[/b]", () => {
   });
 
   it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(null);
+    expect(t.annotations).notToBe(undefined);
     expect(t.annotations!.length).toBe(2);
   });
 
@@ -432,6 +432,6 @@ describe("write function", () => {
   });
 
   it("should have null annotations", () => {
-    expect(empty.annotations).toBe(null);
+    expect(empty.annotations).toBe(undefined);
   });
 });

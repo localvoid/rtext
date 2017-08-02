@@ -17,7 +17,7 @@ export class RichTextWriter {
     this.open = 0;
   }
 
-  write(...ws: Array<string | RichText | ((w: RichTextWriter) => void)>): RichTextWriter {
+  write(...ws: Array<string | RichText | ((w: RichTextWriter) => void)>): this {
     for (let i = 0; i < ws.length; i++) {
       const s = ws[i];
 
@@ -53,27 +53,39 @@ export class RichTextWriter {
     return this;
   }
 
-  begin(type: string, data?: any): RichTextWriter {
+  begin(type: string, data?: any): this {
     this.open++;
     beginAnnotation(this.annotations, type, this.position, data);
     return this;
   }
 
-  beginKey(key: string, type: string, data?: any): RichTextWriter {
+  beginKey(key: string, type: string, data?: any): this {
     this.open++;
     beginAnnotation(this.annotations, type, this.position, data, key);
     return this;
   }
 
-  end(type: string): RichTextWriter {
+  end(type: string): this {
     this.open--;
     endAnnotation(this.annotations, type, this.position);
     return this;
   }
 
-  endKey(key: string, type: string): RichTextWriter {
+  endKey(key: string, type: string): this {
     this.open--;
     endAnnotation(this.annotations, type, this.position, key);
+    return this;
+  }
+
+  continue(type: string, data?: any): this {
+    this.open++;
+    continueAnnotation(this.annotations, type, this.position, data);
+    return this;
+  }
+
+  continueKey(key: string, type: string, data?: any): this {
+    this.open++;
+    continueAnnotation(this.annotations, type, this.position, data, key);
     return this;
   }
 
@@ -111,6 +123,19 @@ export function richText(): RichTextWriter {
   return new RichTextWriter();
 }
 
+export function rt(
+  literals: TemplateStringsArray,
+  ...placeholders: Array<string | RichText | ((w: RichTextWriter) => void)>,
+): (w: RichTextWriter) => void {
+  return function (w) {
+    let i = 0;
+    for (; i < placeholders.length; i++) {
+      w.write(literals[i], placeholders[i]);
+    }
+    w.write(literals[i]);
+  };
+}
+
 function beginAnnotation(
   annotations: RichTextAnnotation[],
   type: string,
@@ -125,6 +150,26 @@ function beginAnnotation(
     data,
     key,
   });
+}
+
+function continueAnnotation(
+  annotations: MutableRichTextAnnotation[],
+  type: string,
+  position: number,
+  data?: any,
+  key?: string,
+): void {
+  let i = annotations.length - 1;
+  while (i >= 0) {
+    const a = annotations[i];
+    if (a.end === position && a.type === type && a.data === data && a.key === key) {
+      a.end = a.start;
+      return;
+    }
+    i--;
+  }
+
+  beginAnnotation(annotations, type, position, data, key);
 }
 
 function endAnnotation(
