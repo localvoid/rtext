@@ -1,4 +1,4 @@
-import { richText } from "rtext";
+import { RichTextWriter, richText } from "rtext-writer";
 import { createRichTextRenderer } from "rtext-render";
 import * as chalk from "chalk";
 
@@ -40,8 +40,8 @@ const render = createRichTextRenderer(
 
 const text = richText()
   .begin("color", "green")
-  .write("NORMAL ")
+  .write("GREEN")
   .end("color")
-  .result();
+  .compose();
 
 console.log(render(text));
