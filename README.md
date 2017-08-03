@@ -57,12 +57,6 @@ class RichTextWriter {
   continueKey(key: string, type: string, data?: any): this;
   compose(): RichText;
 }
-
-function richText(): RichTextWriter;
-function rt(
-  literals: TemplateStringsArray,
-  ...placeholders: Array<string | RichText | ((w: RichTextWriter) => void)>,
-): (w: RichTextWriter) => void;
 ```
 
 API is pretty simple, `begin()` and `end()` methods are used to specify annotations, `write()` is used to write text and
@@ -73,9 +67,24 @@ used, it will try to find an annotation with a matching `type` and `key`.
 
 `continue()` methods will reuse the last annotation when it has the same `end` position and all properties are matching.
 
+### Utility functions
+
+```ts
+function richText(): RichTextWriter;
+
+function rt(
+  literals: TemplateStringsArray,
+  ...placeholders: Array<string | RichText | ((w: RichTextWriter) => void)>,
+): (w: RichTextWriter) => void;
+
+function annotate(text: string, regexp: RegExp, type: string, data?: any, key?: string): RichText;
+```
+
 `richText()` is a simple helper function that will instantiate `RichTextWriter` objects.
 
 `rt()` is a tagged template literal that will create a writer function.
+
+`annotate()` will annotate all text regions matched by `regexp`.
 
 ### Example
 

@@ -192,3 +192,28 @@ function endAnnotation(
     i--;
   }
 }
+
+/**
+ * annotate is a function that adds annotations to the matched text.
+ *
+ * @param text Raw text.
+ * @param regexp RegExp matcher.
+ * @param type Annotation type.
+ * @param data Annotation data.
+ * @param key Annotation key.
+ * @returns Rich Text.
+ */
+export function annotate(text: string, regexp: RegExp, type: string, data?: any, key?: string): RichText {
+  let match = regexp.exec(text);
+  const annotations = [];
+  while (match !== null) {
+    const start = match.index;
+    const end = start + match[0].length;
+    annotations.push({ type, start, end, data, key });
+    match = regexp.exec(text);
+  }
+  return {
+    text: text,
+    annotations: annotations.length === 0 ? undefined : annotations,
+  };
+}
