@@ -84,7 +84,7 @@ export function createRichTextRenderer<C, R>(
       }
     }
     return onResult(context);
-  }
+  };
 }
 
 interface AnnotationEdge {
