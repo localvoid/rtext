@@ -1,14 +1,10 @@
-# Rich Text
+# [rtext](https://github.com/localvoid/rtext) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/localvoid/rtext/blob/master/LICENSE) [![codecov](https://codecov.io/gh/localvoid/rtext/branch/master/graph/badge.svg)](https://codecov.io/gh/localvoid/rtext) [![CircleCI Status](https://circleci.com/gh/localvoid/rtext.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/localvoid/rtext) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/localvoid/rtext)
 
-It is a set of packages for generating and transforming rich texts into different formats.
-
-- [rtext](https://www.npmjs.com/package/rtext) - Type definitions for core data structures.
-- [rtext-writer](https://www.npmjs.com/package/rtext-writer) - Easy-to-use interface for composing rich texts.
-- [rtext-render](https://www.npmjs.com/package/rtext-render) - Pluggable rich text renderer.
-
-## Motivation
-
-Just wanted to improve error reporting with backward compatbility in existing software.
+|Package      |NPM version                                                                                                |
+|-------------|-----------------------------------------------------------------------------------------------------------|
+|rtext        |[![npm version](https://img.shields.io/npm/v/rtext.svg)](https://www.npmjs.com/package/rtext)              |
+|rtext-render |[![npm version](https://img.shields.io/npm/v/rtext-render.svg)](https://www.npmjs.com/package/rtext-render)|
+|rtext-writer |[![npm version](https://img.shields.io/npm/v/rtext-writer.svg)](https://www.npmjs.com/package/rtext-writer)|
 
 ## Core Data Structures
 

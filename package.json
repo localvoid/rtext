@@ -1,42 +1,33 @@
 {
-  "name": "rtext",
   "private": true,
   "version": "0.1.0",
-  "description": "Rich Text library.",
-  "license": "MIT",
-  "author": {
-    "name": "Boris Kaul",
-    "email": "localvoid@gmail.com",
-    "url": "https://github.com/localvoid"
-  },
-  "keywords": [
-    "rich",
-    "text"
-  ],
-  "homepage": "https://github.com/localvoid/rtext",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/localvoid/rtext"
-  },
-  "bugs": {
-    "url": "https://github.com/localvoid/rtext/issues"
-  },
-  "github": "https://github.com/localvoid/rtext",
-  "files": [],
-  "scripts": {},
-  "devDependencies": {
-    "@types/mocha": "^2.2.48",
-    "@types/node": "^9.4.1",
-    "chalk": "^2.3.0",
-    "mocha": "^5.0.0",
-    "nyc": "^11.4.1",
-    "rimraf": "^2.6.2",
-    "ts-node": "^4.1.0",
-    "tslib": "^1.9.0",
-    "tslint": "^5.9.1",
-    "typescript": "^2.7.1"
-  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "lint": "tslint --format codeFrame --project ./tsconfig.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
+    "test:coverage": "jest --coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test"
+    }
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^10.1.0",
+    "chalk": "^2.3.0",
+    "codecov": "^3.0.2",
+    "husky": "^1.0.0-rc.4",
+    "ivi-tslint-rules": "^0.1.4",
+    "jest": "^22.4.3",
+    "ts-jest": "^22.4.6",
+    "tslib": "^1.9.1",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  }
 }

@@ -1,14 +1,13 @@
-import { expect } from "iko";
-import { richText } from "../src/index";
+import { richText } from "rtext-writer";
 
 describe("empty", () => {
   const empty = richText().compose();
 
-  it("should have empty text", () => {
+  test("should have empty text", () => {
     expect(empty.text).toBe("");
   });
 
-  it("should have null annotations", () => {
+  test("should have null annotations", () => {
     expect(empty.annotations).toBe(undefined);
   });
 });
@@ -18,11 +17,11 @@ describe("basic text block", () => {
     .write("123")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(empty.text).toBe("123");
   });
 
-  it("should have null annotations", () => {
+  test("should have null annotations", () => {
     expect(empty.annotations).toBe(undefined);
   });
 });
@@ -33,11 +32,11 @@ describe("two consecutive text blocks", () => {
     .write("456")
     .compose();
 
-  it("should have text '123456'", () => {
+  test("should have text '123456'", () => {
     expect(empty.text).toBe("123456");
   });
 
-  it("should have null annotations", () => {
+  test("should have null annotations", () => {
     expect(empty.annotations).toBe(undefined);
   });
 });
@@ -49,16 +48,16 @@ describe("annotated text block", () => {
     .end("a")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 1", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(1);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -75,16 +74,16 @@ describe("two consecutive annotated text blocks", () => {
     .end("a")
     .compose();
 
-  it("should have text '123456'", () => {
+  test("should have text '123456'", () => {
     expect(t.text).toBe("123456");
   });
 
-  it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 1", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(1);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -101,16 +100,16 @@ describe("one annotated text blocks with one prepending basic text block", () =>
     .end("a")
     .compose();
 
-  it("should have text '123456'", () => {
+  test("should have text '123456'", () => {
     expect(t.text).toBe("123456");
   });
 
-  it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 1", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(1);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -127,16 +126,16 @@ describe("one annotated text blocks with one appending basic text block", () => 
     .write("456")
     .compose();
 
-  it("should have text '123456'", () => {
+  test("should have text '123456'", () => {
     expect(t.text).toBe("123456");
   });
 
-  it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 1", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(1);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -154,16 +153,16 @@ describe("one annotated text blocks with one appending and one prepending basic 
     .write("789")
     .compose();
 
-  it("should have text '123456789'", () => {
+  test("should have text '123456789'", () => {
     expect(t.text).toBe("123456789");
   });
 
-  it("should have annotations length 1", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 1", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(1);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -181,16 +180,16 @@ describe("two different annotations: [a][b][/b][/a]", () => {
     .end("a")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -198,7 +197,7 @@ describe("two different annotations: [a][b][/b][/a]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -216,16 +215,16 @@ describe("two different annotations: [b][a][/b][/a]", () => {
     .end("a")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -233,7 +232,7 @@ describe("two different annotations: [b][a][/b][/a]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -251,16 +250,16 @@ describe("two different annotations: [a][b][/a][/b]", () => {
     .end("b")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -268,7 +267,7 @@ describe("two different annotations: [a][b][/a][/b]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -286,16 +285,16 @@ describe("two different annotations: [b][a][/a][/b]", () => {
     .end("b")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -303,7 +302,7 @@ describe("two different annotations: [b][a][/a][/b]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -322,16 +321,16 @@ describe("overlapping annotations: [a][b]12[/b]3[/a]", () => {
     .end("a")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -339,7 +338,7 @@ describe("overlapping annotations: [a][b]12[/b]3[/a]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -359,16 +358,16 @@ describe("overlapping annotations: [a]1[b]2[/b]3[/a]", () => {
     .end("a")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -376,7 +375,7 @@ describe("overlapping annotations: [a]1[b]2[/b]3[/a]", () => {
     expect(a.end).toBe(3);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -396,16 +395,16 @@ describe("overlapping annotations: [a]1[b]2[/a]3[/b]", () => {
     .end("b")
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(t.text).toBe("123");
   });
 
-  it("should have annotations length 2", () => {
-    expect(t.annotations).notToBe(undefined);
+  test("should have annotations length 2", () => {
+    expect(t.annotations).not.toBeUndefined();
     expect(t.annotations!.length).toBe(2);
   });
 
-  it("should have annotation a:1", () => {
+  test("should have annotation a:1", () => {
     const a = t.annotations![0];
     expect(a.type).toBe("a");
     expect(a.data).toBe(1);
@@ -413,7 +412,7 @@ describe("overlapping annotations: [a]1[b]2[/a]3[/b]", () => {
     expect(a.end).toBe(2);
   });
 
-  it("should have annotation b:2", () => {
+  test("should have annotation b:2", () => {
     const a = t.annotations![1];
     expect(a.type).toBe("b");
     expect(a.data).toBe(2);
@@ -427,11 +426,11 @@ describe("write function", () => {
     .write((w) => w.write("123"))
     .compose();
 
-  it("should have text '123'", () => {
+  test("should have text '123'", () => {
     expect(empty.text).toBe("123");
   });
 
-  it("should have null annotations", () => {
+  test("should have null annotations", () => {
     expect(empty.annotations).toBe(undefined);
   });
 });

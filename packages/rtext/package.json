@@ -1,9 +1,28 @@
 {
   "name": "rtext",
-  "main": "dist/cjs/index.js",
-  "module": "dist/es6/index.js",
-  "typings": "dist/typings/index.d.ts",
   "version": "0.1.0",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "es2016": "dist/es2016/index.js",
+  "typings": "dist/typings/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run dist",
+    "clean": "rm -rf ./dist",
+    "dist": "npm run dist:main && npm run dist:module && npm run dist:es2016",
+    "dist:main": "../../node_modules/.bin/tsc -p ./tsconfig.build.main.json",
+    "dist:module": "../../node_modules/.bin/tsc -p ./tsconfig.build.module.json",
+    "dist:es2016": "../../node_modules/.bin/tsc -p ./tsconfig.build.es2016.json"
+  },
+  "dependencies": {},
+  "devDependencies": {},
   "description": "Rich Text library",
   "license": "MIT",
   "author": {
@@ -23,21 +42,5 @@
   "bugs": {
     "url": "https://github.com/localvoid/rtext/issues"
   },
-  "github": "https://github.com/localvoid/rtext",
-  "files": [
-    "dist",
-    "src",
-    "LICENSE",
-    "README.md"
-  ],
-  "scripts": {
-    "prepublish": "npm run clean && npm run dist",
-    "clean": "../../node_modules/.bin/rimraf ./dist",
-    "dist": "npm run dist:es6 && npm run dist:cjs",
-    "dist:es6": "../../node_modules/.bin/tsc --project ./tsconfig.build.es6.json",
-    "dist:cjs": "../../node_modules/.bin/tsc --project ./tsconfig.build.cjs.json",
-    "lint": "../../node_modules/.bin/tslint --project ./tsconfig.json"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  "github": "https://github.com/localvoid/rtext"
 }

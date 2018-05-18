@@ -5,17 +5,10 @@ interface MutableRichTextAnnotation<T = any> extends RichTextAnnotation<T> {
 }
 
 export class RichTextWriter {
-  private position: number;
-  private text: string;
-  private annotations: MutableRichTextAnnotation[];
-  private open: number;
-
-  constructor() {
-    this.position = 0;
-    this.text = "";
-    this.annotations = [];
-    this.open = 0;
-  }
+  private position = 0;
+  private text: string = "";
+  private annotations: MutableRichTextAnnotation[] = [];
+  private open = 0;
 
   write(...ws: Array<string | RichText | ((w: RichTextWriter) => void)>): this {
     for (let i = 0; i < ws.length; i++) {
@@ -31,8 +24,8 @@ export class RichTextWriter {
           this.text += s.text;
           if (s.annotations !== undefined) {
             if (this.position > 0) {
-              for (let i = 0; i < s.annotations.length; i++) {
-                const a = s.annotations[i];
+              for (let j = 0; j < s.annotations.length; j++) {
+                const a = s.annotations[j];
                 this.annotations.push({
                   type: a.type,
                   start: this.position + a.start,

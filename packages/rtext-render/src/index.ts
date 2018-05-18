@@ -41,28 +41,28 @@ export function createRichTextRenderer<C, R>(
         let parent: StackFrame<C> | null;
         if (edge.opener === null) { // Enter
           while (currentStackFrame !== null && currentStackFrame.edge.priority < edge.priority) {
-            const edge = currentStackFrame.edge;
+            const innerEdge = currentStackFrame.edge;
             pcontext = currentStackFrame.context;
             parent = currentStackFrame.parent;
             currentStackFrame.parent = restoreStackFrame;
             restoreStackFrame = currentStackFrame;
             currentStackFrame = parent;
             context = currentStackFrame === null ? rootContext : currentStackFrame.context;
-            onExit(edge.annotation, context, pcontext);
+            onExit(innerEdge.annotation, context, pcontext);
           }
 
           context = onEnter(edge.annotation, context);
           currentStackFrame = createStackFrame(currentStackFrame, edge, context);
         } else { // Exit
           while (currentStackFrame!.edge !== edge.opener) {
-            const edge = currentStackFrame!.edge;
+            const innerEdge = currentStackFrame!.edge;
             pcontext = currentStackFrame!.context;
             parent = currentStackFrame!.parent;
             currentStackFrame!.parent = restoreStackFrame;
             restoreStackFrame = currentStackFrame;
             currentStackFrame = parent;
             context = currentStackFrame!.context;
-            onExit(edge.annotation, context, pcontext);
+            onExit(innerEdge.annotation, context, pcontext);
           }
           pcontext = currentStackFrame!.context;
           currentStackFrame = currentStackFrame!.parent;
